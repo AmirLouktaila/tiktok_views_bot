@@ -10,9 +10,11 @@ from time import sleep
 from selenium.webdriver.chrome.options import Options
 
 url_video=input("enter url video : ")
-chrome_options = Options()
-chrome_options.add_experimental_option("detach", True)
-driver = webdriver.Chrome()
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+driver = webdriver.Chrome(options=chrome_options)
 
 driver.get('https://zefoy.com/')
 screen='screenshot.png'
@@ -46,7 +48,7 @@ sleep(5)
 try:
 	click_viwes = driver.find_element(By.XPATH,"/html/body/div[6]/div/div[2]/div/div/div[5]/div/button")
 	click_viwes.click()
-	sleep(10)
+	sleep(5)
 except Exception as e:
 	os.remove(screen)
 	os.system('py tiktok_views.py')
@@ -61,18 +63,31 @@ sleep(3)
 
 click_search = driver.find_element(By.XPATH,"/html/body/div[10]/div/form/div/div/button")
 click_search.click()
-sleep(120)
-click_search_2 = driver.find_element(By.XPATH,"/html/body/div[10]/div/form/div/div/button")
-click_search_2.click()
+try:
+	click_viwe = driver.find_element(By.XPATH,'//*[@id="c2VuZC9mb2xeb3dlcnNfdGlrdG9V"]/div[1]/div/form/button')
+	click_viwe.click()
+except:
+
+	click_search_2 = driver.find_element(By.XPATH,"/html/body/div[10]/div/form/div/div/button")
+	click_search_2.click()
+	sleep(2)
+	click_viwe = driver.find_element(By.XPATH,'//*[@id="c2VuZC9mb2xeb3dlcnNfdGlrdG9V"]/div[1]/div/form/button')
+	click_viwe.click()
+	print("done 1000 views")
+	print("wait 3 minutes")
+
+	sleep(200)
+
 sleep(3)
 while True:
-	click_viwes = driver.find_element(By.XPATH,'//*[@id="c2VuZC9mb2xeb3dlcnNfdGlrdG9V"]/div[1]/div/form/button')
-	click_viwes.click()
-	sleep(180)
 	click_search_2 = driver.find_element(By.XPATH,"/html/body/div[10]/div/form/div/div/button")
 	click_search_2.click()
 	sleep(3)
+	click_viwe = driver.find_element(By.XPATH,'//*[@id="c2VuZC9mb2xeb3dlcnNfdGlrdG9V"]/div[1]/div/form/button')
+	click_viwe.click()
+	print("done 1000 views")
+	print("wait 3 minutes")
 
-
-
+	sleep(200)
+	
 
